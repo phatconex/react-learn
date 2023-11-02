@@ -1,0 +1,44 @@
+body {
+    background-color: #f1f1f1;
+}
+.game-board {
+    width: 40%;
+    margin: 50px auto;
+}
+.game-board .cell-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.game-board .cell {
+    border-radius: 10px;
+    width: calc(100% / 3 - 10px);
+    height: 160px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+}
+.game-board .cell.is-x {
+    color: #00009b;
+}
+.game-board .cell.is-o {
+    color: #e40000;
+}
+.game-board .status {
+    text-align: center;
+    font-size: 30px;
+    margin: 15px 0;
+}
+.game-board button {
+    display: block;
+    margin: 0 auto;
+    font-family: inherit;
+    padding: 8px 15px;
+    border-radius: 30px;
+    border: 1px solid #00009b;
+    background-color: #00009b;
+    color: #fff;
+}

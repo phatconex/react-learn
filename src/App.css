@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+body {
+    font-family: "Poppins", sans-serif;
+}
+img {
+    width: 100%;
+    display: block;
+}
+.youtube-list {
+    display: flex;
+    width: 90%;
+    margin: 50px auto;
+    gap: 20px;
+}
+.youtube-card {
+    width: 30%;
+}
+.youtube-card.special {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+        rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
+        rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    padding: 30px;
+    border-radius: 10px;
+}
+.youtube-card .thumb {
+    border-radius: 10px;
+}
+.youtube-card .content {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.youtube-card .avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+.youtube-card .title {
+    font-size: 16px;
+}
+.youtube-card .name {
+    margin-top: 10px;
+    color: #999;
+}

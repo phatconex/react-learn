@@ -1,0 +1,39 @@
+.menuList {
+    width: 80%;
+    margin: 30px auto;
+}
+.menuList h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+.menuContainer {
+    display: flex;
+    gap: 20px;
+}
+.menuLeft {
+    width: 50%;
+}
+.menuRight {
+    width: 50%;
+}
+.menuItem {
+    margin-bottom: 15px;
+}
+.menuTop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.menuTop h3 {
+    font-weight: 500;
+}
+.menuTop h3 span {
+    background-color: #000;
+    color: #fff;
+    font-size: 13px;
+    padding: 3px 10px;
+}
+.menuBot {
+    font-weight: 300;
+}

@@ -1,0 +1,73 @@
+body {
+    margin: 50px;
+}
+.toggle {
+    background-color: #fff;
+    color: #000;
+    color: #fff;
+    width: 120px;
+    height: 50px;
+    background: #0f31fd3d;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+}
+.toggle .circle {
+    width: 45px;
+    height: 45px;
+    background: #0f31fd;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4px;
+    transition: 0.5s all ease;
+}
+.toggle.active {
+    background: #0f31fd;
+}
+.toggle.active .circle {
+    left: 60%;
+    background: white;
+}
+.background {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.background button {
+    font-family: inherit;
+    padding: 15px 100px;
+    background-color: #fff;
+    border: none;
+    font-size: 15px;
+    border-radius: 30px;
+}
+.changeImg {
+    width: 40%;
+    margin: 0 auto;
+}
+.changeImg button {
+    font-family: inherit;
+    padding: 15px 100px;
+    background-color: #fff;
+    border: 1px solid #c9c9c9;
+    font-size: 15px;
+    border-radius: 30px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.changeImg .img img:last-child {
+    display: none;
+}
+.changeImg .img.dog img:last-child {
+    display: block;
+}
+.changeImg .img.dog img:first-child {
+    display: none;
+}
+.list-color {
+    display: flex;
+}

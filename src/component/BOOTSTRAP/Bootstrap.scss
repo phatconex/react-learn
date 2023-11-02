@@ -1,0 +1,62 @@
+$primary-color: #44d7b6;
+$secondary-color: #3685fb;
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Satisfy&display=swap");
+body {
+    font-family: "Outfit", sans-serif !important;
+}
+.text-primary {
+    color: $primary-color !important;
+}
+.text-secondary {
+    color: $secondary-color !important;
+}
+.border-primary {
+    border: 1px solid $primary-color !important;
+}
+.border-secondary {
+    border: 1px solid $secondary-color !important;
+}
+.hover-text-primary:hover {
+    color: $primary-color !important;
+}
+.hover-text-secondary:hover {
+    color: $secondary-color !important;
+}
+.hover-bg-primary:hover {
+    background-color: $primary-color !important;
+    color: #fff !important;
+}
+.hover-bg-secondary:hover {
+    background-color: $secondary-color !important;
+    color: #fff !important;
+}
+.text-big {
+    font-size: 4rem;
+}
+.font-secondary {
+    font-family: "Satisfy", cursive;
+}
+.font-light {
+    font-weight: 300;
+}
+.carousel-before::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+}
+.headline-tour {
+    text-align: center;
+    h3 {
+        font-family: "Satisfy", cursive;
+        color: $secondary-color;
+        font-size: 1.5rem;
+    }
+}
+.box-shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

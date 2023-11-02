@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #dafffb;
+}
+.stopWatch {
+    width: 20%;
+    margin: 100px auto;
+    text-align: center;
+}
+.stopWatch h3 {
+    border: 5px solid #176b87;
+    padding: 50px;
+    font-size: 60px;
+    font-weight: bold;
+    color: #176b87;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+.stopWatch button {
+    background-color: #04364a;
+    color: #fff;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.stopWatch ul li {
+    color: #04364a;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 10px 5px;
+    display: inline-block;
+    border: 1px solid #04364a;
+    padding: 2px 5px;
+}
