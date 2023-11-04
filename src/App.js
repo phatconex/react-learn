@@ -1,10 +1,11 @@
 import "./App.css";
-import ToDoList from "./component/FORM/todolist/ToDoList";
+
+import InputFocus from "./component/USEREF/inputfocus/InputFocus";
 
 function App() {
     return (
         <div>
-            <ToDoList></ToDoList>
+            <InputFocus></InputFocus>
         </div>
     );
 }
