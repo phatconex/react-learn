@@ -1,11 +1,10 @@
 import "./App.css";
-
-import InputFocus from "./component/USEREF/inputfocus/InputFocus";
+import AddProduct from "./component/USEMEMO/addProduct/AddProduct";
 
 function App() {
     return (
         <div>
-            <InputFocus></InputFocus>
+            <AddProduct></AddProduct>
         </div>
     );
 }
