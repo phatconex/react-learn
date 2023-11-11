@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
-import ThemeContext from "./ThemeContext";
-
-const Paragragh = (props) => {
-    const theme = useContext(ThemeContext);
+import React from "react";
+import { useTheme } from "./ThemeContext";
+const Paragragh = () => {
+    const themes = useTheme();
     return (
         <div>
-            <p className={theme}>
+            <p className={themes.theme}>
                 React Context is a way to manage state globally.It can be used together with the
                 useState Hook to share state between deeply nested components more easily than with
                 useState alone.State should be held by the highest parent component in the stack

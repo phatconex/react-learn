@@ -12,7 +12,7 @@ const Hackernews = () => {
             const res = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query}`);
 
             setHits(res.data.hits || []);
-            setLoading(false);
+            setLoading(true);
         } catch (err) {
             setLoading(false);
             setErr(`Api error:${err.message}`);

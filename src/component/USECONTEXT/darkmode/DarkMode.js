@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import BoxContent from "./BoxContent";
-import ThemeContext from "./ThemeContext";
+import { useTheme } from "./ThemeContext";
 
 const DarkMode = () => {
-    const [theme, setTheme] = useState("light");
+    const theme = useTheme();
+    console.log(theme);
     return (
-        <ThemeContext.Provider value={theme}>
-            <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-                Toggle DarkMode
-            </button>
+        <div>
+            <button onClick={theme.toggleTheme}>Toggle DarkMode</button>
             <BoxContent></BoxContent>
-        </ThemeContext.Provider>
+        </div>
     );
 };
 
