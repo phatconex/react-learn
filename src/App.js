@@ -1,8 +1,8 @@
 import "./App.css";
-import AuthPage from "./component/USECONTEXT/authContext/AuthPage";
+import LanguageContext from "./component/USECONTEXT/languageContext/LanguageContext";
 
 function App() {
-    return <AuthPage></AuthPage>;
+    return <LanguageContext></LanguageContext>;
 }
 
 export default App;
