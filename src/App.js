@@ -1,13 +1,8 @@
 import "./App.css";
-import DarkMode from "./component/USECONTEXT/darkmode/DarkMode";
-import { ThemeProvider } from "./component/USECONTEXT/darkmode/ThemeContext";
+import AuthPage from "./component/USECONTEXT/authContext/AuthPage";
 
 function App() {
-    return (
-        <ThemeProvider>
-            <DarkMode></DarkMode>
-        </ThemeProvider>
-    );
+    return <AuthPage></AuthPage>;
 }
 
 export default App;
