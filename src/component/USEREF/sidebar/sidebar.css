@@ -1,0 +1,30 @@
+.icon {
+    font-size: 30px;
+    margin: 50px;
+    display: inline-block;
+    cursor: pointer;
+}
+.sidebar {
+    position: absolute;
+    top: 0;
+    background-color: rgb(244, 244, 244);
+    height: 100vh;
+    width: 200px;
+    padding: 30px;
+}
+.sidebar {
+    left: -200px;
+    transition: 0.5s;
+}
+.sidebar.active {
+    left: 0;
+}
+.sidebar i {
+    text-align: right;
+    display: block;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+.sidebar li {
+    margin-bottom: 15px;
+}

@@ -1,8 +1,8 @@
 import "./App.css";
-import LanguageContext from "./component/USECONTEXT/languageContext/LanguageContext";
+import SideBar from "./component/USEREF/sidebar/SideBar";
 
 function App() {
-    return <LanguageContext></LanguageContext>;
+    return <SideBar></SideBar>;
 }
 
 export default App;
