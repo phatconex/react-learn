@@ -1,8 +1,12 @@
 import "./App.css";
-import SideBar from "./component/USEREF/sidebar/SideBar";
+import PageProduct from "./component/ROUTER/ListProduct/PageProduct";
 
 function App() {
-    return <SideBar></SideBar>;
+    return (
+        <div>
+            <PageProduct></PageProduct>
+        </div>
+    );
 }
 
 export default App;
