@@ -1,11 +1,14 @@
 import "./App.css";
-import PageProduct from "./component/ROUTER/ListProduct/PageProduct";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ScrollEffect from "./component/USEEFFECT/ScrollEffect/ScrollEffect";
 
 function App() {
     return (
-        <div>
-            <PageProduct></PageProduct>
-        </div>
+        <>
+            <ToastContainer />
+            <ScrollEffect></ScrollEffect>
+        </>
     );
 }
 

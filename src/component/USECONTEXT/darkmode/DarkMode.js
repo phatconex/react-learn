@@ -3,11 +3,10 @@ import BoxContent from "./BoxContent";
 import { useTheme } from "./ThemeContext";
 
 const DarkMode = () => {
-    const theme = useTheme();
-    console.log(theme);
+    const { toggleTheme } = useTheme();
     return (
         <div>
-            <button onClick={theme.toggleTheme}>Toggle DarkMode</button>
+            <button onClick={toggleTheme}>Toggle DarkMode</button>
             <BoxContent></BoxContent>
         </div>
     );
