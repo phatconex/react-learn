@@ -3,8 +3,34 @@ import { usePage } from "./PageContext";
 import "./PageContext.css";
 import { toast } from "react-toastify";
 const LoginForm = () => {
-    const { theme, getLogin } = usePage();
-    const [form, setForm] = useState({});
+    const users = [
+        {
+            id: 1,
+            userName: "phat",
+            passWord: "123456",
+        },
+        {
+            id: 2,
+            userName: "phuc",
+            passWord: "123456",
+        },
+        {
+            id: 3,
+            userName: "phan",
+            passWord: "987654",
+        },
+    ];
+
+    const { theme, handleLogin } = usePage();
+    const [form, setForm] = useState({
+        username: "",
+        password: "",
+    });
+    const [err, setErr] = useState({
+        username: "",
+        password: "",
+    });
+
     const handleInput = (e) => {
         setForm({
             ...form,
@@ -13,12 +39,32 @@ const LoginForm = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        getLogin(form);
-        setForm({});
-        toast.success("Success Login !", {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000,
-        });
+
+        const newErr = {
+            username: !form.username ? "Username not empty" : "",
+            password: !form.password ? "Password not empty" : "",
+        };
+        setErr(newErr);
+
+        if (Object.values(newErr).every((item) => !item)) {
+            const findUser = users.find((item) => item.userName === form.username);
+            if (findUser) {
+                if (findUser.passWord === form.password) {
+                    toast.success("Login success", {
+                        position: "top-center",
+                    });
+                    handleLogin(form);
+                } else {
+                    toast.error("Wrong password", {
+                        position: "top-center",
+                    });
+                }
+            } else {
+                toast.error("No account", {
+                    position: "top-center",
+                });
+            }
+        }
     };
 
     return (
@@ -27,11 +73,25 @@ const LoginForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-5">
                     <label>Username:</label>
-                    <input type="text" name="username" className="block border border-gray-400 w-full mt-3 p-2" onChange={handleInput} />
+                    <input
+                        type="text"
+                        defaultValue={form.username}
+                        name="username"
+                        className="block border border-gray-400 w-full mt-3 p-2"
+                        onChange={handleInput}
+                    />
+                    <p className="text-red-600 mt-3">{err.username}</p>
                 </div>
                 <div className="mb-5">
                     <label>Password:</label>
-                    <input type="password" name="password" className="block border border-gray-400 w-full mt-3 p-2" onChange={handleInput} />
+                    <input
+                        type="password"
+                        defaultValue={form.password}
+                        name="password"
+                        className="block border border-gray-400 w-full mt-3 p-2"
+                        onChange={handleInput}
+                    />
+                    <p className="text-red-600 mt-3">{err.password}</p>
                 </div>
                 <button type="submit" className={`w-full p-2 ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
                     Login

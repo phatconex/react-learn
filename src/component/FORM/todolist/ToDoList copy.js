@@ -1,52 +1,61 @@
 import React, { useEffect, useState } from "react";
 
 const ToDoList = () => {
-    const [isCompleted, setIsCompleted] = useState(false);
     const [form, setForm] = useState({
         title: "",
         desc: "",
     });
-    const [todo, setToDo] = useState(localStorage.getItem("LIST_TODO") ? JSON.parse(localStorage.getItem("LIST_TODO")) : []);
-    const [completeToDo, setCompleteToDo] = useState(
-        localStorage.getItem("LIST_COMPLETETODO") ? JSON.parse(localStorage.getItem("LIST_COMPLETETODO")) : []
-    );
-    const handleInput = (e) => {
+    const [isCompletedScreen, setIsCompletedScreen] = useState(false);
+    const [todos, setToDos] = useState([]);
+    const [completeToDos, setCompleteToDos] = useState([]);
+    const handleChangeInput = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
     };
+    useEffect(() => {
+        setToDos(localStorage.getItem("LIST_TODO") ? JSON.parse(localStorage.getItem("LIST_TODO")) : []);
+        setCompleteToDos(localStorage.getItem("LIST_COMPLETETODO") ? JSON.parse(localStorage.getItem("LIST_COMPLETETODO")) : []);
+    }, []);
     const handleAddToDo = () => {
-        const newToDo = [...todo];
-        newToDo.push(form);
-        localStorage.setItem("LIST_TODO", JSON.stringify(newToDo));
-        setToDo(newToDo);
+        const newToDos = [...todos];
+        newToDos.push(form);
+        localStorage.setItem("LIST_TODO", JSON.stringify(newToDos));
+        setToDos(newToDos);
         setForm({
             title: "",
             desc: "",
         });
     };
-    const handleDeleteToDo = (index) => {
-        const currentToDos = [...todo];
+    const handleDelete = (index) => {
+        const currentToDos = [...todos];
         currentToDos.splice(index, 1);
         localStorage.setItem("LIST_TODO", JSON.stringify(currentToDos));
-        setToDo(currentToDos);
+        setToDos(currentToDos);
     };
-    const handleCompleteToDo = (index) => {
-        const now = new Date();
-        const finishTime = `${now.getDate()} / ${
-            now.getMonth() + 1
-        } / ${now.getFullYear()} at ${now.getHours()} : ${now.getMinutes()} : ${now.getSeconds()}`;
-        const currentCompleteToDo = [...completeToDo];
+    const handleComplete = (index) => {
+        const date = new Date();
+        var dd = date.getDate();
+        var mm = date.getMonth() + 1;
+        var yyyy = date.getFullYear();
+        var hh = date.getHours();
+        var minutes = date.getMinutes();
+        var ss = date.getSeconds();
+        var finalDate = dd + "-" + mm + "-" + yyyy + " at " + hh + ":" + minutes + ":" + ss;
+
+        const currentCompleteToDos = [...completeToDos];
         const newCompleteToDo = {
-            ...todo[index],
-            completedOn: finishTime,
+            ...todos[index],
+            completedOn: finalDate,
         };
-        currentCompleteToDo.push(newCompleteToDo);
-        localStorage.setItem("LIST_COMPLETETODO", JSON.stringify(currentCompleteToDo));
-        setCompleteToDo(currentCompleteToDo);
-        handleDeleteToDo(index);
+        currentCompleteToDos.push(newCompleteToDo);
+        localStorage.setItem("LIST_COMPLETETODO", JSON.stringify(currentCompleteToDos));
+        setCompleteToDos(currentCompleteToDos);
+        handleDelete(index);
     };
+    console.log(completeToDos);
+
     return (
         <div className="bg-blue-950 p-10 w-1/2 m-auto text-white mt-10 rounded-xl">
             <h1 className="text-center text-3xl font-bold mb-5">My Todos</h1>
@@ -56,12 +65,12 @@ const ToDoList = () => {
                         Title:
                     </label>
                     <input
-                        value={form.title}
-                        onChange={handleInput}
                         className="py-2 ps-3 w-full rounded  text-black outline-none"
                         type="text"
+                        value={form.title}
                         placeholder="What's the title?"
                         name="title"
+                        onChange={handleChangeInput}
                     />
                 </div>
                 <div className="w-2/5">
@@ -69,52 +78,59 @@ const ToDoList = () => {
                         Descriptions:
                     </label>
                     <input
-                        value={form.desc}
-                        onChange={handleInput}
                         className="py-2 ps-3 w-full rounded  text-black outline-none"
                         type="text"
                         placeholder="What's the descriptions?"
                         name="desc"
+                        value={form.desc}
+                        onChange={handleChangeInput}
                     />
                 </div>
                 <div className="w-1/5">
-                    <button onClick={handleAddToDo} className="w-full bg-red-600 pt-2 pb-3 rounded font-bold border-none">
+                    <button className="w-full bg-red-600 pt-2 pb-3 rounded font-bold border-none" onClick={handleAddToDo}>
                         ADD
                     </button>
                 </div>
             </div>
             <div className="border-t mt-7 pt-7 border-blue-900">
                 <div>
-                    <button className={`py-2 px-5 ${isCompleted ? "bg-blue-900" : "bg-red-600"} mr-2 rounded`} onClick={() => setIsCompleted(false)}>
+                    <button
+                        className={`py-2 px-5 bg-blue-900 mr-2 rounded ${!isCompletedScreen && "bg-red-600"}`}
+                        onClick={() => setIsCompletedScreen(false)}
+                    >
                         To do
                     </button>
-                    <button className={`py-2 px-5 ${isCompleted ? "bg-red-600" : "bg-blue-900"} mr-2 rounded`} onClick={() => setIsCompleted(true)}>
+                    <button
+                        className={`py-2 px-5 bg-blue-900 mr-2 rounded ${isCompletedScreen && "bg-red-600"}`}
+                        onClick={() => setIsCompletedScreen(true)}
+                    >
                         Complete
                     </button>
                 </div>
-                {!isCompleted ? (
+                {!isCompletedScreen && (
                     <div>
-                        {todo.map((item, index) => (
+                        {todos.map((item, index) => (
                             <div key={index} className="flex justify-between bg-blue-900 mt-9 p-8 rounded items-center">
                                 <div>
                                     <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
                                     <p className="font-light opacity-90">{item.desc}</p>
                                 </div>
                                 <div>
-                                    <button className="text-3xl" onClick={() => handleDeleteToDo(index)}>
+                                    <button className="text-3xl" onClick={() => handleDelete(index)}>
                                         <i className="fa-regular fa-trash-can"></i>
                                     </button>
-                                    <button className="text-3xl ms-10 text-blue-300" onClick={() => handleCompleteToDo(index)}>
+                                    <button className="text-3xl ms-10 text-blue-300" onClick={() => handleComplete(index)}>
                                         <i className="fa-solid fa-check"></i>
                                     </button>
                                 </div>
                             </div>
                         ))}
                     </div>
-                ) : (
+                )}
+                {isCompletedScreen && (
                     <div>
-                        {completeToDo.map((item, index) => (
-                            <div className="flex justify-between bg-blue-900 mt-9 p-8 rounded items-center">
+                        {completeToDos.map((item, index) => (
+                            <div key={index} className="flex justify-between bg-blue-900 mt-9 p-8 rounded items-center">
                                 <div>
                                     <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
                                     <p className="font-light opacity-90">{item.desc}</p>

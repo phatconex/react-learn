@@ -7,7 +7,12 @@ const SimpleValidate = () => {
         password: "",
         rePassword: "",
     });
-    const [err, setErr] = useState({});
+    const [err, setErr] = useState({
+        fullname: "",
+        email: "",
+        password: "",
+        rePassword: "",
+    });
     const [togglePass, setTogglePass] = useState(true);
     const handleInputChange = (e) => {
         setForm({
@@ -20,6 +25,8 @@ const SimpleValidate = () => {
         const newErr = {};
         if (!form.fullname) {
             newErr.fullname = "Fullname can't be empty";
+        } else {
+            newErr.fullname = "";
         }
 
         const reEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -27,19 +34,25 @@ const SimpleValidate = () => {
             newErr.email = "Email can't be empty";
         } else if (!reEmail.test(form.email)) {
             newErr.email = "Email invalidate";
+        } else {
+            newErr.email = "";
         }
 
         if (!form.password) {
             newErr.password = "Password can't be empty";
+        } else {
+            newErr.password = "";
         }
 
         if (!form.rePassword) {
             newErr.rePassword = "RePassword can't be empty";
         } else if (form.rePassword !== form.password) {
             newErr.rePassword = "Repassword and password do not match";
+        } else {
+            newErr.rePassword = "";
         }
 
-        if (Object.keys(newErr).length === 0) {
+        if (Object.values(newErr).every((item) => !item)) {
             setForm({
                 fullname: "",
                 email: "",

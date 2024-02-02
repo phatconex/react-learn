@@ -1,13 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./sidebar.css";
 const SideBar = () => {
+    const [sidebar, setSidebar] = useState(false);
     const sidebarRef = useRef();
     const iconRef = useRef();
-    const [sidebar, setSidebar] = useState(false);
     useEffect(() => {
-        const handleClickOut = (e) => {
-            console.log(sidebarRef.current.contains(e.target));
-            console.log(iconRef.current.contains(e.target));
+        const handleClickOutside = (e) => {
             if (!sidebarRef.current.contains(e.target)) {
                 if (!iconRef.current.contains(e.target)) {
                     setSidebar(false);
@@ -16,9 +14,9 @@ const SideBar = () => {
                 }
             }
         };
-        document.addEventListener("click", handleClickOut);
+        document.addEventListener("click", handleClickOutside);
         return () => {
-            document.removeEventListener("click", handleClickOut);
+            document.removeEventListener("click", handleClickOutside);
         };
     }, []);
     return (

@@ -4,8 +4,8 @@ const PageContext = createContext();
 
 const PageProvider = ({ children }) => {
     const [theme, setTheme] = useState("light");
-    const [login, setLogin] = useState();
     const [count, setCount] = useState(0);
+    const [login, setLogin] = useState(localStorage.getItem("LOGIN_INFO") ? JSON.parse(localStorage.getItem("LOGIN_INFO")) : {});
     const handleCount = (type) => {
         if (type === "minus") {
             setCount(count - 1);
@@ -16,25 +16,21 @@ const PageProvider = ({ children }) => {
     const toggleTheme = () => {
         setTheme(theme === "light" ? "dark" : "light");
     };
-    const getLogin = (user) => {
+    const handleLogin = (user) => {
         setLogin(user);
         localStorage.setItem("LOGIN_INFO", JSON.stringify(user));
     };
-
-    useEffect(() => {
-        setLogin(JSON.parse(localStorage.getItem("LOGIN_INFO")));
-    }, []);
-
-    const logOut = () => {
-        setLogin();
+    const handleLogout = () => {
+        setLogin({});
         localStorage.removeItem("LOGIN_INFO");
-        toast.success("Success Logout !", {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000,
+        toast.success("Logout success", {
+            position: "top-center",
         });
     };
 
-    return <PageContext.Provider value={{ toggleTheme, theme, getLogin, login, logOut, handleCount, count }}>{children}</PageContext.Provider>;
+    return (
+        <PageContext.Provider value={{ toggleTheme, theme, handleCount, count, handleLogin, login, handleLogout }}>{children}</PageContext.Provider>
+    );
 };
 
 const usePage = () => {

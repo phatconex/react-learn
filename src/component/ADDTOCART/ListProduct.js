@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import CardProduct from "./CardProduct";
+import useFetch from "./useFetch";
 const ListProduct = () => {
-    const [arrProduct, setArrProduct] = useState();
-    const [filterProduct, setFilterProduct] = useState();
     const [tab, setTab] = useState(0);
-    const { slug } = useParams();
-    console.log(slug);
+    const { data: arrProduct } = useFetch(`https://fakestoreapi.com/products`);
+    const [filterProduct, setFilterProduct] = useState();
+
     useEffect(() => {
-        const fetchApi = async () => {
-            const response = await fetch(`https://fakestoreapi.com/products`);
-            const data = await response.json();
-            setArrProduct(data);
-            setFilterProduct(data);
-        };
-        fetchApi();
-    }, []);
+        setFilterProduct(arrProduct);
+    }, [arrProduct]);
+
     const handleFilter = (minPrice, maxPrice, tab) => {
         setTab(tab);
         if (!minPrice && !maxPrice) {
@@ -49,7 +43,7 @@ const ListProduct = () => {
             <div className="list-fruit">
                 {filterProduct &&
                     filterProduct.map((item) => (
-                        <CardProduct key={item.id} id={item.id} img={item.image} price={item.price} title={item.title}></CardProduct>
+                        <CardProduct key={item.id} id={item.id} image={item.image} price={item.price} title={item.title}></CardProduct>
                     ))}
             </div>
         </div>

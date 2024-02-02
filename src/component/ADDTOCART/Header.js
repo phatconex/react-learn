@@ -3,13 +3,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "./cartContext";
 const Header = () => {
     const { cart } = useCart();
-    const [search, setSearch] = useState();
+    const [search, setSearch] = useState("");
     const navigate = useNavigate();
     const handleSearch = () => {
         navigate(`/search/${search}`);
         setSearch("");
     };
-
+    console.log(cart);
     return (
         <nav>
             <ul>
@@ -27,7 +27,7 @@ const Header = () => {
             </div>
             <NavLink to="/cart" className="cart">
                 <i className="fa-solid fa-cart-shopping"></i>
-                <span>{cart.length}</span>
+                <span>{cart ? cart.length : 0}</span>
             </NavLink>
         </nav>
     );
