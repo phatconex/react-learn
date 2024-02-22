@@ -21,9 +21,8 @@ img {
     width: 30%;
 }
 .youtube-card.special {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
-        rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px,
-        rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     padding: 30px;
     border-radius: 10px;
 }
@@ -48,4 +47,17 @@ img {
 .youtube-card .name {
     margin-top: 10px;
     color: #999;
+}
+.list-user {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 50px auto;
+    gap: 20px;
+}
+.list-user .user {
+    border: 1px solid #ddd;
+    background-color: #eee;
+    padding: 10px 30px;
+    width: calc(100% / 5 - 20px);
 }
